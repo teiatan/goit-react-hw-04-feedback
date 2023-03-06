@@ -5,7 +5,7 @@ export const App = () => {
   return (
     <>
 
-      <Section name="beginning" title="Yahooooo">
+      <Section name="" title="Yahooooo">
         
       </Section>
 
