@@ -1,13 +1,13 @@
 import { Section } from './Section/section';
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { state } from 'data/feedbackMarks';
+import { Feedback } from './Feedback/Feedback';
+//import { state } from 'data/FeedbackOptions';
 
 export const App = () => {
   return (
     <>
 
       <Section name="feedback" title="Please leave feedback">
-        <FeedbackOptions state={state}/>
+        <Feedback />
       </Section>
 
       <Section name="statictics" title="Statictics">

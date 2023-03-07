@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
+
 export function FeedbackOptions({state}) {
     return (
         <ul>
             {Object.keys(state).map((element) => {
                 return (
                     <li key={element}>
-                        <button type="button">{element}</button>
+                        <button type="button" onClick={console.log()}>{element}</button>
                     </li>
                     );
           })}
@@ -16,4 +17,4 @@ export function FeedbackOptions({state}) {
 
 FeedbackOptions.propTypes = {
     state: PropTypes.object,
-}
+};
