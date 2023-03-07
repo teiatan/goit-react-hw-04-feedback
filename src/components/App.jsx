@@ -1,6 +1,8 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
 import { Statistics } from "components/Statistics/Statistics";
+import { Section } from "./Section/section";
+import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
 
 export class App extends Component {
 
@@ -22,9 +24,13 @@ export class App extends Component {
         bad: this.props.initialBad,
     };
   
+    onLeaveFeedback = key => {
+      this.setState(prevState => {
+        return { [key]: prevState[key] + 1 };
+      });
+    };
 
     handleGood = () => {
-        console.log("good");
         this.setState(prevState => {
             return {
                 good: prevState.good + 1,
@@ -33,7 +39,6 @@ export class App extends Component {
     };
 
     handleNeutral = () => {
-        console.log("neutral");
         this.setState(prevState => {
             return {
                 neutral: prevState.neutral + 1,
@@ -42,15 +47,11 @@ export class App extends Component {
     };
 
     handleBad = () => {
-        console.log("bad");
-        
-
         this.setState(prevState => {
             return {
                 bad: prevState.bad + 1,
             };
         });
-        console.log(this.countTotalFeedback());
     };
 
     countTotalFeedback = () => {
@@ -72,21 +73,32 @@ export class App extends Component {
     };
 
     render() {
+        const { good, neutral, bad } = this.state;
         return (
             <>
-            <ul>
-                <li><button type="button" onClick={this.handleGood}>good</button></li>
-                <li><button type="button" onClick={this.handleNeutral}>neutral</button></li>
-                <li><button type="button" onClick={this.handleBad}>bad</button></li>
-            </ul>
+              <Section name="feedback" title="Please, leave feedback">
 
-            <Statistics 
-                onGood={this.state.good} 
-                onNeutral={this.state.neutral} 
-                onBad={this.state.bad}
-                onTotal={this.countTotalFeedback()}
-                onPositivefeedback={this.countPositiveFeedbackPercentage()}
-            />
+                <FeedbackOptions 
+                  options={Object.keys(this.state)}
+                  onLeaveFeedback={this.onLeaveFeedback}
+                />
+                <ul>
+                    <li><button type="button" onClick={this.handleGood}>good</button></li>
+                    <li><button type="button" onClick={this.handleNeutral}>neutral</button></li>
+                    <li><button type="button" onClick={this.handleBad}>bad</button></li>
+                </ul>
+              </Section>
+              
+              <Section name="statistics" title="Statistics">
+                <Statistics 
+                    good={good} 
+                    neutral={neutral} 
+                    bad={bad}
+                    total={this.countTotalFeedback()}
+                    positivePercentage={this.countPositiveFeedbackPercentage()}
+                />
+              </Section>
+            
             
             </>
         );

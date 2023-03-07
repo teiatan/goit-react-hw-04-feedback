@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 
-export function Statistics({onGood, onNeutral, onBad, onTotal, onPositivefeedback}) {
+export function Statistics({good, neutral, bad, total, positivePercentage}) {
     return(
         <>
             <ul>
-                <li>Good: {onGood}</li>
-                <li>Neutral: {onNeutral}</li>
-                <li>Bad: {onBad}</li>
+                <li>Good: {good}</li>
+                <li>Neutral: {neutral}</li>
+                <li>Bad: {bad}</li>
             </ul>
-            <p>Total: {onTotal}</p>
-            <p>Positive feedback: {onPositivefeedback}</p>
+            <p>Total: {total}</p>
+            <p>Positive feedback: {positivePercentage} %</p>
         </>
     );
 };
 
 Statistics.propTypes = {
-    onGood: PropTypes.number, 
-    onNeutral: PropTypes.number, 
-    onBad: PropTypes.number,
+    good: PropTypes.number, 
+    neutral: PropTypes.number, 
+    bad: PropTypes.number,
 }
