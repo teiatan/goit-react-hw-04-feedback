@@ -1,10 +1,22 @@
 import { Component } from "react";
+import { Statistics } from "components/Statistics/Statistics";
 
 export class Feedback extends Component {
+
+    static defaultProps = {
+        initialGood: 0,
+        initialNeutral: 0,
+        initialBad: 0,
+    };
+
+    static propTypes = {
+
+    };
+
     state = {
-        good: 0,
-        neutral: 0,
-        bad: 0,
+        good: this.props.initialGood,
+        neutral: this.props.initialNeutral,
+        bad: this.props.initialBad,
     };
   
 
@@ -45,9 +57,12 @@ export class Feedback extends Component {
                 <li><button type="button" onClick={this.handleBad}>bad</button></li>
             </ul>
 
-            <span>Good: {this.state.good}</span>
-            <span>Neutral: {this.state.neutral}</span>
-            <span>Bad: {this.state.bad}</span>
+            <Statistics 
+                onGood={this.state.good} 
+                onNeutral={this.state.neutral} 
+                onBad={this.state.bad}
+            />
+            
             </>
         );
     }
