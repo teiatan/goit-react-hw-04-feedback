@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 
-export function Statistics({onGood, onNeutral, onBad}) {
+export function Statistics({onGood, onNeutral, onBad, onTotal, onPositivefeedback}) {
     return(
-        <ul>
-            <li>Good: {onGood}</li>
-            <li>Neutral: {onNeutral}</li>
-            <li>Bad: {onBad}</li>
-        </ul>
-        
+        <>
+            <ul>
+                <li>Good: {onGood}</li>
+                <li>Neutral: {onNeutral}</li>
+                <li>Bad: {onBad}</li>
+            </ul>
+            <p>Total: {onTotal}</p>
+            <p>Positive feedback: {onPositivefeedback}</p>
+        </>
     );
 };
 

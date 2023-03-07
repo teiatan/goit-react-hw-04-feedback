@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 import { Statistics } from "components/Statistics/Statistics";
 
 export class Feedback extends Component {
@@ -10,7 +11,9 @@ export class Feedback extends Component {
     };
 
     static propTypes = {
-
+        initialGood: PropTypes.number,
+        initialNeutral: PropTypes.number,
+        initialBad: PropTypes.number,
     };
 
     state = {
@@ -40,13 +43,33 @@ export class Feedback extends Component {
 
     handleBad = () => {
         console.log("bad");
+        
+
         this.setState(prevState => {
             return {
                 bad: prevState.bad + 1,
             };
         });
+        console.log(this.countTotalFeedback());
     };
 
+    countTotalFeedback = () => {
+        const { good, neutral, bad } = this.state;
+        return (this.total = good + neutral + bad);
+           
+    };
+
+
+    countPositiveFeedbackPercentage = () => {
+        const { good, neutral, bad } = this.state;
+        this.positivePercentage = Math.round((good / (good + neutral + bad)) * 100);
+
+        if (this.positivePercentage) {
+        return this.positivePercentage;
+        } else {
+        return 0;
+        };
+    };
 
     render() {
         return (
@@ -61,6 +84,8 @@ export class Feedback extends Component {
                 onGood={this.state.good} 
                 onNeutral={this.state.neutral} 
                 onBad={this.state.bad}
+                onTotal={this.countTotalFeedback()}
+                onPositivefeedback={this.countPositiveFeedbackPercentage()}
             />
             
             </>
