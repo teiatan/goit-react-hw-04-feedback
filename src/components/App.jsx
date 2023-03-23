@@ -25,6 +25,9 @@ export function App() {
         };
     };
 
+    const total = good + neutral + bad;
+    const positivePercentage = Math.round(good/total *100);
+
     return (
         <>
             <Section name="feedback" title="Please, leave feedback">
@@ -38,6 +41,8 @@ export function App() {
                     good={good} 
                     neutral={neutral} 
                     bad={bad}
+                    total={total}
+                    positivePercentage={positivePercentage}
                 />
             </Section>
         </>
