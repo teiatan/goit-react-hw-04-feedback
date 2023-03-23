@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
-import { Notification } from 'components/Notification/Notification';
 import { Ul, Li, P, Div } from './Statistics.styled';
 
 export function Statistics({good, neutral, bad, total, positivePercentage}) {
     
-    return(<>
-        {total === 0
-        ?
-        <Notification message="There is no feedback" />
-        :
+    return(
         <>
             <Ul>
                 <Li>Good: {good}</Li>
@@ -20,8 +15,7 @@ export function Statistics({good, neutral, bad, total, positivePercentage}) {
                 <P>Positive feedback: {positivePercentage} %</P>
             </Div>
         </>
-        }
-    </>);
+    );
 };
 
 Statistics.propTypes = {
