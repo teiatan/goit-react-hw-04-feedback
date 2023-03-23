@@ -1,12 +1,22 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Notification } from 'components/Notification/Notification';
 import { Ul, Li, P, Div } from './Statistics.styled';
 
 export function Statistics({good, neutral, bad}) {
-    const [total, setTotal] = useState(good+neutral+bad);
-    const [positivePercentage, setPositivePercentage] = useState(Math.round(good/total *100));
+    const [total, setTotal] = useState(0);
+    const [positivePercentage, setPositivePercentage] = useState(0);
 
-    return(
+    useEffect(()=>{
+        setTotal(good+neutral+bad);
+        setPositivePercentage(Math.round(good/total *100));
+    }, [good, neutral, bad, total]);
+    
+    return(<>
+        {total === 0
+        ?
+        <Notification message="There is no feedback" />
+        :
         <>
             <Ul>
                 <Li>Good: {good}</Li>
@@ -18,13 +28,12 @@ export function Statistics({good, neutral, bad}) {
                 <P>Positive feedback: {positivePercentage} %</P>
             </Div>
         </>
-    );
+        }
+    </>);
 };
 
 Statistics.propTypes = {
     good: PropTypes.number, 
     neutral: PropTypes.number, 
     bad: PropTypes.number,
-    total: PropTypes.number,
-    positivePercentage: PropTypes.number,
 }
