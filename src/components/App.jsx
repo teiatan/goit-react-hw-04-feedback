@@ -43,12 +43,11 @@ export function App() {
                     good={good} 
                     neutral={neutral} 
                     bad={bad}
-                    total={total}
-                    positivePercentage={positivePercentage}
+                    //total={total}
+                    //positivePercentage={positivePercentage}
                 />
                 }
             </Section>
         </>
     );
-
 };

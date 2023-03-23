@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Ul, Li, P, Div } from './Statistics.styled';
 
-export function Statistics({good, neutral, bad, total, positivePercentage}) {
+export function Statistics({good, neutral, bad}) {
+    const [total, setTotal] = useState(good+neutral+bad);
+    const [positivePercentage, setPositivePercentage] = useState(Math.round(good/total *100));
+
     return(
         <>
             <Ul>
